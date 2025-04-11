@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Traveller AI</title>
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="travel-themed-bg min-h-screen flex flex-col transition-colors duration-500">
+    <!-- Animated Background Elements -->
+    <div class="animated-bg">
+        <div class="clouds-container">
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
+            <div class="cloud cloud-4"></div>
+        </div>
+        <div class="airplane-container">
+            <div class="airplane airplane-1">
+                <div class="airplane-body"></div>
+                <div class="airplane-tail"></div>
+                <div class="airplane-wing"></div>
+                <div class="airplane-window"></div>
+            </div>
+            <div class="airplane airplane-2">
+                <div class="airplane-body"></div>
+                <div class="airplane-tail"></div>
+                <div class="airplane-wing"></div>
+                <div class="airplane-window"></div>
+            </div>
+        </div>
+        <div class="map-pulse"></div>
+    </div>
+
+    <header class="relative z-10 bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 text-white p-4 shadow-lg backdrop-filter backdrop-blur-lg bg-opacity-80">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="logo-container">
+                    <svg class="logo-icon h-10 w-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21.5 15.5C21.5 15.5 19 19.5 12 19.5C5 19.5 2.5 15.5 2.5 15.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16.5 10.5C16.5 10.5 15 12.5 12 12.5C9 12.5 7.5 10.5 7.5 10.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 4.5L12 19.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19 8.5L5 8.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 5.5L8 5.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L22 12" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5 13.5L5 15.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19 13.5L19 15.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold">Budget Traveller</h1>
+                    <p class="text-xs opacity-80">AI Travel Budget Planner</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button id="download-btn" class="p-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 transition-all transform hover:scale-105">
+                    <i class="fas fa-download text-white"></i>
+                </button>
+                <button id="theme-toggle" class="p-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30 transition-all transform hover:scale-105">
+                    <i class="fas fa-moon text-white"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto flex-1 p-4 flex flex-col items-center justify-center relative z-10">
+        <div class="glassmorphism-card flex-1 flex flex-col overflow-hidden w-full max-w-3xl transition-all duration-300 transform hover:shadow-2xl">
+            <div class="chat-header">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center text-white">
+                        <i class="fas fa-robot text-lg"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-semibold text-gray-800 dark:text-gray-200">Travel Assistant</h2>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">
+                            <span class="inline-block w-2 h-2 bg-green-500 rounded-full mr-1"></span>
+                            Online • Ready to help
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="chat-container" class="chat-messages flex-1 p-4 overflow-y-auto space-y-4">
+                <!-- Chat messages will be inserted here -->
+            </div>
+            
+            <!-- Voice controls container -->
+            <div class="voice-controls-container border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 p-2 flex justify-end space-x-2 transition-all">
+                <!-- Voice controls will be inserted here by JS -->
+            </div>
+            
+            <div class="chat-input-container">
+                <form id="chat-form" class="flex gap-2">
+                    <input type="text" id="user-input" class="flex-1 p-3 border border-gray-300 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all shadow-sm dark:bg-gray-700 dark:text-white" placeholder="Where do you want to travel?">
+                    <button type="submit" class="send-plane-btn">
+                        <div class="plane-icon">
+                            <i class="fas fa-paper-plane"></i>
+                        </div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="relative z-10 bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 text-white p-3 text-center text-sm backdrop-filter backdrop-blur-lg bg-opacity-80">
+        <p>&copy; 2023 Budget Traveller AI. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html> 
